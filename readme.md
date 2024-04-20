@@ -55,7 +55,7 @@ The output is either:
 1. The number of cases.
 2. The number of candidates.
 3. An array of candidates.
-4. A *vote_path, points to vote_path tree.
+4. A *vote_path vote_path_root, points to vote_path tree.
 
 **Each vote_path struct contains:**
 1. A bool "isEliminated"
@@ -82,6 +82,6 @@ If the candidate branch has been visited by the upper nodes, its pointer is NULL
 
 
 ### Bug Checklist
-- [1] NA
+- [1] Replace "21" with const in "vote_path.h"
 
 [^1]: Programming Challenges By S.Skienna and M.Revilla, page 25

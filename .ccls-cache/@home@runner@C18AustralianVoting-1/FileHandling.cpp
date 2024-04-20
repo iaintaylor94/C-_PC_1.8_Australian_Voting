@@ -1,12 +1,12 @@
 #include "FileHandling.h"
 
-
 FileHandling::FileHandling (void) {
   // Default Constructor
   std::cerr << "This is the default constructor, IO files are not created" << std::endl;
 }
 
 FileHandling::FileHandling (int argc, char **argv) {
+  std::cerr << "This is the constructor for FileHandling" << std::endl;
   // Test num arguments
   if (argc != 2) std::cerr << "Usage: " << argv[0] << " <file>" << std::endl;
 
@@ -23,6 +23,7 @@ FileHandling::FileHandling (int argc, char **argv) {
 }
 
 FileHandling::~FileHandling () {
+  std::cerr << "This is the destructor for FileHandling" << std::endl;
   // Close Files
   inFile.close();
   outFile.close();

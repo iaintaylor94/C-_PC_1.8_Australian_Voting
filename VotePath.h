@@ -23,6 +23,8 @@ public:
   ~Vote_path (void) {};
 
   void printPath (std::vector<int>);
+  void printVote (Vote*, std::vector<int>, int);
+  void printTree (int);
   void createTree (int);
 };
 

@@ -6,6 +6,8 @@ int main(int argc, char **argv) {
   Election election (argc, argv);
 
   election.vote_path.createTree(3);
+  std::cout << std::endl;
+  election.vote_path.printTree(3);
   
   /*
   FileIO fileIO (argc, argv);

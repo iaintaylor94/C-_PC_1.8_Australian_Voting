@@ -6,6 +6,20 @@ void Vote_path::printPath(std::vector<int> p) {
   std::cout << std::endl;
 }
 
+void Vote_path::printVote (Vote* v, std::vector<int> p, int nc) {
+  printPath(v->path);
+  for (int i = 0; i < nc; i++) {
+    if (v->branches[i] != nullptr) {
+      printVote (v->branches[i], p, nc);
+    }
+  }
+}
+
+void Vote_path::printTree (int nc) {
+  for (int i = 0; i < nc; i++) {
+    printVote(root.branches[i], path, nc);
+  }
+}
 
 bool Vote_path::inPath (std::vector<int> p, int i) {
   for (auto it = p.begin(); it != p.end(); it++) {

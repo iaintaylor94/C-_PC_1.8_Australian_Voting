@@ -1,11 +1,29 @@
 #ifndef VOTEPATH_H
 #define VOTEPATH_H
 
-struct vote_path {
+#include <vector>
+#include <iostream>
+
+struct Vote {
+  std::vector <int> path;
+  std::vector <Vote*> branches;
+};
+
+class Vote_path {
   static const int MAX_NUM_CANDIDATES = 21;
-  bool isEliminated;
-  int numVotes;
-  vote_path *vote_path_branches [MAX_NUM_CANDIDATES];
+  int num_candidates;
+  std::vector <int> path;
+  Vote root;
+
+  bool inPath (std::vector<int>, int);
+  void initVote (Vote*, std::vector<int>, int);
+
+public:
+  Vote_path (void) {};
+  ~Vote_path (void) {};
+
+  void printPath (std::vector<int>);
+  void createTree (int);
 };
 
 

@@ -3,7 +3,7 @@
 
 #include <string>
 
-struct candidate {
+struct Candidate {
   std::string name;
   int numVotes;
   bool isWinner;

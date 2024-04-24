@@ -3,10 +3,9 @@
 
 #include "FileHandling.h"
 
-class FileIO : protected FileHandling {
+class FileIO : public FileHandling {
 
-public:
-  void getNumCases (int*);
+protected:
   void getNumCandidates (int*);
   void getCandidateName (std::string*);
   void printWinner (std::string);
@@ -17,6 +16,8 @@ public:
     std::cerr << "This is the constructor for FileIO" << std::endl;
   };
   ~FileIO (void);
+
+  void getNumCases (int*);
 
 };
 #endif

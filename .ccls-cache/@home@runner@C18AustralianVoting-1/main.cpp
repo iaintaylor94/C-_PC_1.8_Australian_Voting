@@ -1,7 +1,13 @@
 #include <iostream>
-#include "FileIO.h"
+#include "Election.h"
 
 int main(int argc, char **argv) {
+
+  Election election (argc, argv);
+
+  election.vote_path.createTree(3);
+  
+  /*
   FileIO fileIO (argc, argv);
 
   int numCases; 
@@ -12,12 +18,11 @@ int main(int argc, char **argv) {
   fileIO.getNumCandidates (&numCandidates); 
   std::cout << "numCandidates = " << numCandidates << std::endl;
 
-  std::string canName; 
-
+  std::string canName;
   for (int i = 0; i < numCandidates; i++) {
     fileIO.getCandidateName (&canName);
     fileIO.printWinner(canName);
   }
-
-
+  */
+  
 }

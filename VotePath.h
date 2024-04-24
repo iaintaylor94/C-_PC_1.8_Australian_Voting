@@ -3,10 +3,13 @@
 
 #include <vector>
 #include <iostream>
+#include <iomanip>
 
 struct Vote {
   std::vector <int> path;
   std::vector <Vote*> branches;
+
+  int num_votes;
 };
 
 class Vote_path {
@@ -18,14 +21,17 @@ class Vote_path {
   bool inPath (std::vector<int>, int);
   void initVote (Vote*, std::vector<int>, int);
 
+  void printNumVotes (int);
+  void printPath (std::vector<int>);
+  void printVote (Vote*, std::vector<int>, int);
+
 public:
   Vote_path (void) {};
   ~Vote_path (void) {};
 
-  void printPath (std::vector<int>);
-  void printVote (Vote*, std::vector<int>, int);
-  void printTree (int);
+  void printTree (void);
   void createTree (int);
+  void deleteTree (void);
 };
 
 

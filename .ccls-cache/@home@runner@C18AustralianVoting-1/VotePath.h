@@ -24,6 +24,7 @@ class Vote_path {
   void printNumVotes (int);
   void printPath (std::vector<int>);
   void printVote (Vote*, std::vector<int>, int);
+  void deleteVote (Vote*);
 
 public:
   Vote_path (void) {};
@@ -32,6 +33,8 @@ public:
   void printTree (void);
   void createTree (int);
   void deleteTree (void);
+  void updateVotePath (Vote*, std::vector<int>);
+  void addVotePath(std::vector<int>);
 };
 
 

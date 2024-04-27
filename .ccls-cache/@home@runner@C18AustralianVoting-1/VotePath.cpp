@@ -60,3 +60,30 @@ void Vote_path::createTree (int nc) {
     path.pop_back();
   }
 }
+
+void Vote_path::deleteVote (Vote* v) {
+  for (int i = 0; i < num_candidates; i++) {
+    if (v->branches[i] != nullptr) {
+      deleteVote(v->branches[i]);
+      delete v->branches[i];
+    }
+  }
+}
+void Vote_path::deleteTree (void) {
+  for (int i = 0; i < num_candidates; i++) {
+    deleteVote(root.branches[i]);
+  }
+}
+
+void Vote_path::updateVotePath (Vote* v, std::vector<int> vp) {
+  if (vp.size() == v->path.size()) return;
+  
+  int candidateID = vp[v->path.size()];
+  v->branches[candidateID]->num_votes++;
+  updateVotePath (v->branches[candidateID], vp);
+}
+void Vote_path::addVotePath(std::vector<int> vp) {
+  int candidateID = vp[path.size()];
+  root.branches[candidateID]->num_votes++;
+  updateVotePath(root.branches[candidateID], vp);
+}

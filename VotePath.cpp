@@ -22,7 +22,7 @@ void Vote_path::printVote (Vote* v, std::vector<int> p, int nc) {
 void Vote_path::printTree () {
   std::cout << "                                                     Vote_Path Votes" << std::endl;
   std::cout << "-------------------------------------------------------------- -----" << std::endl; 
-  for (int i = 0; i < num_candidates; i++) {
+  for (int i = 1; i < num_candidates; i++) {
     printVote(root.branches[i], path, num_candidates);
   }
 }
@@ -35,10 +35,7 @@ bool Vote_path::inPath (std::vector<int> p, int i) {
 }
 
 void Vote_path::initVote (Vote* v, std::vector<int> p, int nc) {
-  
   v->path = p;
-  //printPath(v->path);
-  //std::cout << std::endl;
   
   for (int i = 0; i < num_candidates; i++) {  
     if (inPath(p, i)) v->branches.push_back(nullptr);
@@ -52,11 +49,15 @@ void Vote_path::initVote (Vote* v, std::vector<int> p, int nc) {
 }
 
 void Vote_path::createTree (int nc) {
-  num_candidates = nc;
-  for (int i = 0; i < nc; i++) {
+  num_candidates = nc + 1;
+  
+  root.branches.push_back(nullptr); // Disable "0" for root
+  path.push_back(0); // Disable "0" for tree
+  
+  for (int i = 1; i < num_candidates; i++) {
     root.branches.push_back(new Vote);
     path.push_back (i);
-    initVote(root.branches[i], path, nc);
+    initVote(root.branches[i], path, num_candidates);
     path.pop_back();
   }
 }
@@ -75,15 +76,17 @@ void Vote_path::deleteTree (void) {
   }
 }
 
-void Vote_path::updateVotePath (Vote* v, std::vector<int> vp) {
-  if (vp.size() == v->path.size()) return;
+void Vote_path::updateVotePath (Vote* v, std::queue<int> vp) {
+  std::cout << "UVP" << std::endl;
+  vp.pop();
+
+  if (vp.empty()) return;
   
-  int candidateID = vp[v->path.size()];
-  v->branches[candidateID]->num_votes++;
-  updateVotePath (v->branches[candidateID], vp);
+  v->branches[vp.front()]->num_votes++;
+  updateVotePath (v->branches[vp.front()], vp);
 }
-void Vote_path::addVotePath(std::vector<int> vp) {
-  int candidateID = vp[path.size()];
-  root.branches[candidateID]->num_votes++;
-  updateVotePath(root.branches[candidateID], vp);
+void Vote_path::addVP(std::queue<int> vp) {
+  std::cout << "AVP" << std::endl;
+  root.branches[vp.front()]->num_votes++;
+  updateVotePath(root.branches[vp.front()], vp);
 }

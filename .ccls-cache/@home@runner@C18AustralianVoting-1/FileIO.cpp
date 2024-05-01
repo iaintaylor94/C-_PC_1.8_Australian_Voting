@@ -27,7 +27,21 @@ void FileIO::printWinner (std::string cn) {
   outFile << cn << std::endl;
 }
 
+bool FileIO::getVP (std::queue<int>* vp) {
+  std::string line;
+  getline (inFile, line);
 
+  if (line.empty()) return false;
+  
+  std::istringstream ss (line);
+  std::string ID;
+
+  while (ss >> ID) {
+    vp->push(std::stoi(ID));
+  }
+  
+  return true;
+}
 
 
 FileIO::FileIO (void) {

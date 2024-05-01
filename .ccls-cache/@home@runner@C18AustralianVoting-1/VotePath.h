@@ -2,6 +2,7 @@
 #define VOTEPATH_H
 
 #include <vector>
+#include <queue>
 #include <iostream>
 #include <iomanip>
 
@@ -33,8 +34,8 @@ public:
   void printTree (void);
   void createTree (int);
   void deleteTree (void);
-  void updateVotePath (Vote*, std::vector<int>);
-  void addVotePath(std::vector<int>);
+  void updateVotePath (Vote*, std::queue<int>);
+  void addVP(std::queue<int>);
 };
 
 

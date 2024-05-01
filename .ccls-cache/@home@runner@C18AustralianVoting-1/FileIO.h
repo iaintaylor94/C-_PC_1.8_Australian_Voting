@@ -1,6 +1,11 @@
 #ifndef FILEIO_H
 #define FILEIO_H
 
+#include <vector>
+#include <sstream>
+
+#include <queue>
+
 #include "FileHandling.h"
 
 class FileIO : public FileHandling {
@@ -8,6 +13,7 @@ class FileIO : public FileHandling {
 protected:
   void getNumCandidates (int*);
   void getCandidateName (std::string*);
+  bool getVP(std::queue<int>*);
   void printWinner (std::string);
 
 public:

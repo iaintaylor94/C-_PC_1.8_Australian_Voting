@@ -2,6 +2,7 @@
 #define ELECTION_H
 
 #include <queue>
+#include <climits>
 
 #include "FileIO.h"
 #include "Candidate.h"
@@ -14,6 +15,10 @@ class Election : public FileIO, public Candidate {
   Candidate candidates [MAX_NUM_CANDIDATES];
   std::queue<int> votePathInput;
 
+  int numLostVotes = 0;
+
+  void updateVotes (std::vector<int>);
+
 public:
   Election (int argc, char **argv) : FileIO (argc, argv) {
     std::cout << "This is the constructor for Election" << std::endl;
@@ -21,24 +26,24 @@ public:
   ~Election (void) {};
 
   int num_cases;
-  // initCases();
 
   void initCases (void);
   void initCandidates (void);
 
+  void getNumLostVotes (void);
+  void eliminateLoser (int);
+  void eliminateLosers(void);
+
+  int isWinner (void);
+  bool allVotesCounted (void);
+  void printWinner (int);
+  void printWinners (void);
+  
+
+  Vote_path vote_path;
+  void createTree (void);
   bool getVotePath (void);
   void addVotePath(void);
   void printVotePath(void);
-
-  Vote_path vote_path;
-  // void printTree (void);
-  // void createTree (void);
-  // void deleteTree (void);
-  // void updateVotePath (Vote*, std::vector<int>);
-  // void addVotePath(std::vector<int>);
-
-  void createTree (void);
-
-
 };
 #endif

@@ -77,7 +77,6 @@ void Vote_path::deleteTree (void) {
 }
 
 void Vote_path::updateVotePath (Vote* v, std::queue<int> vp) {
-  std::cout << "UVP" << std::endl;
   vp.pop();
 
   if (vp.empty()) return;
@@ -86,7 +85,28 @@ void Vote_path::updateVotePath (Vote* v, std::queue<int> vp) {
   updateVotePath (v->branches[vp.front()], vp);
 }
 void Vote_path::addVP(std::queue<int> vp) {
-  std::cout << "AVP" << std::endl;
   root.branches[vp.front()]->num_votes++;
   updateVotePath(root.branches[vp.front()], vp);
+}
+
+void Vote_path::eliminateVote (Vote* v, int ID) {
+  if (v->isEliminated) {
+    for (int i = 1; i < num_candidates; i++) {
+      if (v->branches[i] == nullptr) continue;
+      else eliminateVote(v->branches[i], ID);
+    }
+  }
+  else {
+    v->isEliminated = true;
+    // candidate ID is last element in the v->path
+    secondPreference[v->path.back()] += v->num_votes;
+    
+  }
+}
+std::vector<int> Vote_path::eliminateLoser (int ID) {
+  secondPreference.clear();
+  secondPreference.resize(MAX_NUM_CANDIDATES + 1); // Candidates start at 1
+  secondPreference[0] = 0;
+  eliminateVote(root.branches[ID], ID);
+  return secondPreference;
 }

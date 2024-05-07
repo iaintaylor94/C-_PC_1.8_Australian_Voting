@@ -2,8 +2,8 @@
 #define FILEIO_H
 
 #include <vector>
+#include <string>
 #include <sstream>
-
 #include <queue>
 
 #include "FileHandling.h"
@@ -14,7 +14,7 @@ protected:
   void getNumCandidates (int*);
   void getCandidateName (std::string*);
   bool getVP(std::queue<int>*);
-  void printWinner (std::string);
+  void printWinnerStr (std::string);
 
 public:
   FileIO (void);

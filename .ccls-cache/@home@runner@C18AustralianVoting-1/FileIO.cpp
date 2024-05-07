@@ -22,9 +22,9 @@ void FileIO::getCandidateName (std::string *cn) {
   getline (inFile, line);
   *cn = line;
 }
-void FileIO::printWinner (std::string cn) {
-  std::cout << cn << std::endl;
-  outFile << cn << std::endl;
+void FileIO::printWinnerStr(std::string cn) {
+  std::cout << "WINNER: " << cn << std::endl;
+  outFile << "WINNER: " << cn << std::endl;
 }
 
 bool FileIO::getVP (std::queue<int>* vp) {
@@ -35,7 +35,7 @@ bool FileIO::getVP (std::queue<int>* vp) {
   
   std::istringstream ss (line);
   std::string ID;
-
+  
   while (ss >> ID) {
     vp->push(std::stoi(ID));
   }

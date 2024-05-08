@@ -63,7 +63,7 @@ int Election::isWinner (void) {
 }
 bool Election::allVotesCounted (void) {
   // All candidates must be either: isWinner || isEliminated
-  for (int i = 0; i < num_candidates; i++) {
+  for (int i = 1; i < num_candidates; i++) {
     if (!candidates[i].isWinner && !candidates[i].isEliminated) return false;
   }
   return true;

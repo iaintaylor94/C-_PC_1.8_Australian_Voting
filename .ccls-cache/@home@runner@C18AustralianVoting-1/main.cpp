@@ -42,6 +42,5 @@ int main(int argc, char **argv) {
         election.eliminateLosers();
       }
     }
-    std::cout << std::endl;
   }
 }

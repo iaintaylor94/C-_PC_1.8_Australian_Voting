@@ -72,8 +72,9 @@ void Election::printWinner (int i) {
   printWinnerStr(candidates[i].name);
 }
 void Election::printWinners (void) {
-  for (int i = 0; i < num_candidates; i++) {
+  for (int i = 1; i < num_candidates; i++) {
     if (!candidates[i].isEliminated) {
+      std::cout << "CN" << std::endl << candidates[i].name << std::endl;
       printWinnerStr(candidates[i].name);
     }
   }
